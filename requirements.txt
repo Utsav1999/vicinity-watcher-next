@@ -1,0 +1,7 @@
+- Header
+- Footer
+- Register
+- Login
+- Log Incident
+- Ask For Service
+- News/ Weather Update
