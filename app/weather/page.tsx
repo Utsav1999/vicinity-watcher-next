@@ -8,8 +8,22 @@ export default function Weather() {
         latitude: ""
     });
 
+    const [isProcessing, setIsProcessing] = useState(false);
+
+    function cleanFormData() {
+        setLongLat({
+            longitude: "",
+            latitude: ""
+        });
+    }
+
     function handleChange(e: any) {
         setLongLat({ ...longlat, [e.target.name]: e.target.value });
+    }
+
+    function handleClick() {
+        setIsProcessing(true);
+        cleanFormData();
     }
 
     return (
@@ -30,7 +44,7 @@ export default function Weather() {
                         <input type="text" id="longitude" name="longitude" className="w-full p-1 border-solid border-2 border-blue-500 rounded" placeholder="Enter Longitude" onChange={handleChange} required />
                     </div>
                     <Link href={`/weather/${longlat.longitude}/${longlat.latitude}`}>
-                        <button type="button" className="bg-green-500 hover:bg-green-800 cursor-pointer text-white border-solid border-2 border-green-800 py-2 px-4 mt-2">Submit</button>
+                        <button type="button" className={`text-white border-solid border-2 border-green-800 py-2 px-4 mt-2 ${isProcessing ? "bg-black cursor-not-allowed" : "bg-green-500 hover:bg-green-800 cursor-pointer" }`} onClick={handleClick}>Submit</button>
                     </Link>
                 </form>
             </div>
